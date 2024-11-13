@@ -13,9 +13,9 @@
                         <th class="px-4 py-2 text-sm font-medium text-gray-600">Judul</th>
                         <th class="px-4 py-2 text-sm font-medium text-gray-600">Kategori</th>
                         <th class="w-50 px-4 py-2 text-sm font-medium text-gray-600">Konten</th>
-                        @can('edit articles|delete articles')
+                        @canany(['edit articles', 'delete articles'])
                         <th class="px-4 py-2 text-sm font-medium text-gray-600">Aksi</th>
-                        @endcan
+                        @endcanany
                     </tr>
                 </thead>
                 <tbody>
@@ -24,7 +24,7 @@
                             <td class="px-4 py-2 text-sm text-gray-800">{{ $article->title }}</td>
                             <td class="px-4 py-2 text-sm text-gray-800">{{ $article->category->name }}</td>
                             <td class="px-4 py-2 text-sm text-gray-800">{{ Str::limit($article->content, 50) }}</td>
-                            @can('edit artciles|delete articles')
+                            @canany(['edit articles', 'delete articles'])
                             <td class="px-4 py-2 d-flex">
                                 @can('edit articles')
                                 <a href="{{ route('articles.edit', $article) }}" class="bg-yellow-500 text-gray-200 px-3 py-1 rounded-md hover:bg-yellow-600 text-sm">Edit</a>
@@ -38,7 +38,7 @@
                                 @endcan
                                 
                             </td>
-                            @endcan
+                            @endcanany
                         </tr>
                     @endforeach
                 </tbody>
