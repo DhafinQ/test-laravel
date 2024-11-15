@@ -1,6 +1,6 @@
 <x-app-layout>
     <x-slot name="header">
-        <h1 class="text-2xl font-semibold text-gray-800">Category</h1>
+        <h1 class="text-2xl font-semibold text-gray-800 dark:text-gray-200">Category</h1>
     </x-slot>
 
     <div class="container mx-auto p-6">

@@ -1,6 +1,6 @@
 <x-app-layout>
     <x-slot name="header">
-        <h1 class="text-2xl font-semibold text-gray-800">Buat Artikel Baru</h1>
+        <h1 class="text-2xl font-semibold text-gray-800 dark:text-gray-200">Buat Artikel Baru</h1>
     </x-slot>
 
     <div class="max-w-3xl mx-auto p-6">
@@ -23,6 +23,27 @@
                     @endforeach
                 </select>
             </div>
+
+            <div class="mb-4">
+                <x-input-label for="category" class="block text-sm font-medium text-gray-700">Tags</x-input-label>
+                @foreach ($tags as $tag)
+                    <div class="flex items-center space-x-3">
+                        <input 
+                            type="checkbox" 
+                            name="tags[]" 
+                            value="{{ $tag->id }}" 
+                            id="tag_{{ $tag->id }}" 
+                            class="h-4 w-4 mr-2 text-blue-600 border-gray-600 focus:ring-blue-500 dark:bg-gray-700
+                             dark:border-gray-600 dark:focus:ring-blue-500 dark:ring-offset-gray-800" 
+                            {{ in_array($tag->id, old('tags', [])) ? 'checked' : '' }}
+                        >
+                        <label for="tag_{{ $tag->id }}" class="text-sm text-gray-100 dark:text-gray-200">
+                            {{ $tag->name }}
+                        </label>
+                    </div>
+                @endforeach
+            </div>
+            
             
 
             <div class="mb-4">

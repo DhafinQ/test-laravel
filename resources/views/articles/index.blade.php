@@ -1,6 +1,6 @@
 <x-app-layout>
     <x-slot name="header">
-        <h1 class="text-2xl font-semibold text-gray-800">Artikel Saya</h1>
+        <h1 class="text-2xl font-semibold text-gray-800 dark:text-gray-200">Artikel Saya</h1>
     </x-slot>
 
     <div class="container mx-auto p-6">
@@ -13,6 +13,7 @@
                         <th class="px-4 py-2 text-sm font-medium text-gray-600">Judul</th>
                         <th class="px-4 py-2 text-sm font-medium text-gray-600">Kategori</th>
                         <th class="w-50 px-4 py-2 text-sm font-medium text-gray-600">Konten</th>
+                        <th class="px-4 py-2 text-sm font-medium text-gray-600">Tags</th>
                         @canany(['edit articles', 'delete articles'])
                         <th class="px-4 py-2 text-sm font-medium text-gray-600">Aksi</th>
                         @endcanany
@@ -24,6 +25,15 @@
                             <td class="px-4 py-2 text-sm text-gray-800">{{ $article->title }}</td>
                             <td class="px-4 py-2 text-sm text-gray-800">{{ $article->category->name }}</td>
                             <td class="px-4 py-2 text-sm text-gray-800">{{ Str::limit($article->content, 50) }}</td>
+                            <td class="px-4 py-2 text-sm text-gray-800">
+                                <ul>
+                                @foreach ($article->tags as $articletag)
+                                    <li>
+                                        {{ $articletag->tag->name }}
+                                    </li>
+                                @endforeach
+                                </ul>
+                            </td>
                             @canany(['edit articles', 'delete articles'])
                             <td class="px-4 py-2 d-flex">
                                 @can('edit articles')
